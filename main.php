@@ -1,14 +1,13 @@
 <?php
 
-include_once("lib/utils.php");
-include_once("lib/function.php");
-require_once("Controller/AgenceController.php");
-require_once("Controller/ClientController.php");
-require_once("Controller/CompteController.php");
+use App\Controller\AgenceController;
+use App\Controller\ClientController;
+use App\Controller\CompteController;
 
-use Controller\AgenceController as AgenceController;
-use Controller\ClientController as ClientController;
-use Controller\CompteController as CompteController;
+require 'vendor/autoload.php';
+require 'app/lib/init.php';
+include_once(ROOT_PATH . "lib/utils.php");
+include_once(ROOT_PATH . "lib/function.php");
 
 $cptCompte = 0;
 
@@ -16,11 +15,11 @@ while (true) {
 
     // Récupérations de tous les enregistrements 'csv' => Array of objects;
     $agences = [];
-    csvToArray($agences, $filename = 'sauv/agences/agences.csv', $delimiter = ',');
+    csvToArray($agences, $filename = ROOT_PATH . 'sauv/agences/agences.csv', $delimiter = ',');
     $clients = [];
-    csvToArray($clients, $filename = 'sauv/clients/clients.csv', $delimiter = ',');
+    csvToArray($clients, $filename = ROOT_PATH . 'sauv/clients/clients.csv', $delimiter = ',');
     $comptes = [];
-    csvToArray($comptes, $filename = 'sauv/comptes/comptes.csv', $delimiter = ',');
+    csvToArray($comptes, $filename = ROOT_PATH . 'sauv/comptes/comptes.csv', $delimiter = ',');
 
     $clientController = new ClientController();
     $agenceController = new AgenceController();
@@ -79,7 +78,7 @@ while (true) {
                 break;
             }
             $agences[] = $agenceController->getAgence();
-            arrayToCsv($agences, $filename = 'sauv/agences/agences.csv', $delimiter = ',', $header = array("codeAgence", "nomAgence", "adresse"));
+            arrayToCsv($agences, $filename = ROOT_PATH . 'sauv/agences/agences.csv', $delimiter = ',', $header = array("codeAgence", "nomAgence", "adresse"));
             change_color("purple");
             echo ("L'agence' n° " . $agenceController->getAgence()->getcodeAgence() . " a bien été créée" . PHP_EOL);
             change_color("");
@@ -103,7 +102,7 @@ while (true) {
             $clientController->setEmail();
             $clientController->verrifEmailDoublon($clients);
             $clients[] = $clientController->getClient();
-            arrayToCsv($clients, $filename = 'sauv/clients/clients.csv', $delimiter = ',', $header = array("idClient", "nom", "prenom", "dateDeNaissance", "email"));
+            arrayToCsv($clients, $filename = ROOT_PATH . 'sauv/clients/clients.csv', $delimiter = ',', $header = array("idClient", "nom", "prenom", "dateDeNaissance", "email"));
             change_color("purple");
             echo ("Le client n° " . $clientController->getClient()->getidClient() . " a bien été créé" . PHP_EOL);
             change_color("");
@@ -295,7 +294,7 @@ while (true) {
             }
 
             $compteController->setNumeroCompte($comptes);
-            arrayToCsv($comptes, $filename = 'sauv/comptes/comptes.csv', $delimiter = ',', $header = array("numeroCompte", "codeAgence", "idClient", "type", "decouvert", "decouvertMontant", "solde", "soldeLivretA", "soldePel"));
+            arrayToCsv($comptes, $filename = ROOT_PATH . 'sauv/comptes/comptes.csv', $delimiter = ',', $header = array("numeroCompte", "codeAgence", "idClient", "type", "decouvert", "decouvertMontant", "solde", "soldeLivretA", "soldePel"));
             change_color("green");
             echo ("Le compte n° " . $compteController->getCompte()->getNumeroCompte() . " a bien été créé" . PHP_EOL);
             change_color("");
