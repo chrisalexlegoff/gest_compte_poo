@@ -78,7 +78,7 @@ while (true) {
                 break;
             }
             $agences[] = $agenceController->getAgence();
-            arrayToCsv($agences, $filename = ROOT_PATH . 'sauv/agences/agences.csv', $delimiter = ',', $header = array("codeAgence", "nomAgence", "adresse"));
+            csvToArray($agences, $filename = ROOT_PATH . 'sauv/agences/agences.csv', $delimiter = ',', $header = array("codeAgence", "nomAgence", "adresse"));
             change_color("purple");
             echo ("L'agence' n° " . $agenceController->getAgence()->getcodeAgence() . " a bien été créée" . PHP_EOL);
             change_color("");
