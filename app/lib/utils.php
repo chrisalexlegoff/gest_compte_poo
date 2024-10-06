@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Change color of CLI
+ *
+ * @param string $color
+ * @return void
+ */
 function change_color($color)
 {
     // Set up shell colors
