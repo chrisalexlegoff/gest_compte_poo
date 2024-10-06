@@ -1,10 +1,8 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
-use Model\Agence;
-
-require('Model/Agence.php');
+use App\Model\Agence;
 
 /**
  * Controller Agence

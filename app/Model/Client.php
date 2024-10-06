@@ -1,8 +1,6 @@
 <?php
 
-namespace Model;
-
-include_once("lib/utils.php");
+namespace App\Model;
 
 class Client
 {

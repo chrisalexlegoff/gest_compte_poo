@@ -1,12 +1,8 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
-require('Model/Client.php');
-
-use Model\Client as ModelClient;
-
-include_once("lib/utils.php");
+use App\Model\Client;
 
 /**
  * Controller Client
@@ -30,7 +26,7 @@ class ClientController
      */
     public function __construct(?string $idClient = null, string $nom = "", string $prenom = "", string $dateDeNaissance = "", string $email = "")
     {
-        $this->client = new ModelClient($idClient,  $nom,  $prenom,  $dateDeNaissance,  $email);
+        $this->client = new Client($idClient,  $nom,  $prenom,  $dateDeNaissance,  $email);
     }
 
 
@@ -321,7 +317,7 @@ class ClientController
                 break;
             }
 
-            require './Views/afficherComptesClients.php';
+            require ROOT_PATH . 'Views/afficherComptesClients.php';
             readline("Appuyer sur entrer");
             break;
         }
@@ -384,7 +380,7 @@ class ClientController
             }
 
 
-            $afficherFicheClient = ("sauv/clients/Infosclient.txt");
+            $afficherFicheClient = (ROOT_PATH . "sauv/clients/Infosclient.txt");
             $f = fopen($afficherFicheClient, 'w');
 
             $ficheClient = ("                      Fiche client" . PHP_EOL . PHP_EOL .
@@ -522,7 +518,7 @@ class ClientController
                     } else {
                         break;
                     }
-                    require './Views/afficherComptesClients.php';
+                    require ROOT_PATH . 'Views/afficherComptesClients.php';
                     readline("Appuyer sur entrer");
                     break;
                 }
@@ -570,7 +566,7 @@ class ClientController
                     } else {
                         break;
                     }
-                    require './Views/afficherComptesClients.php';
+                    require ROOT_PATH . 'Views/afficherComptesClients.php';
                     readline("Appuyer sur entrer");
                     break;
                 }
@@ -618,7 +614,7 @@ class ClientController
                     } else {
                         break;
                     }
-                    require './Views/afficherComptesClients.php';
+                    require ROOT_PATH . 'Views/afficherComptesClients.php';
                     readline("Appuyer sur entrer");
                     break;
                 }

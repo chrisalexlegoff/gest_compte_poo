@@ -1,10 +1,8 @@
 <?php
 
-namespace Controller;
+namespace App\Controller;
 
-require('Model/Compte.php');
-
-use Model\Compte as ModelCompte;
+use App\Model\Compte;
 
 /**
  * Compte Controller
@@ -33,7 +31,7 @@ class CompteController
      */
     public function __construct(?int $numeroCompte = null, ?string $codeAgence = null, ?string $idClient = null, string $type = "", bool $decouvert = false, ?float $decouvertMontant = null, ?float $solde = null, ?float $soldeLivretA = null, ?float $soldePel = null)
     {
-        $this->compte = new ModelCompte($numeroCompte, $codeAgence,  $idClient, $type, $decouvert, $decouvertMontant, $solde, $soldeLivretA, $soldePel);
+        $this->compte = new Compte($numeroCompte, $codeAgence,  $idClient, $type, $decouvert, $decouvertMontant, $solde, $soldeLivretA, $soldePel);
     }
 
     /**
@@ -281,7 +279,7 @@ class CompteController
                 break;
             }
 
-            require './Views/afficherComptesClients.php';
+            require ROOT_PATH . 'Views/afficherComptesClients.php';
             readline("Appuyer sur entrer");
             break;
         }
@@ -344,7 +342,7 @@ class CompteController
                 $duree = (int)readline("Invalide! Saisir le nombre d'années : ");
                 change_color("");
             }
-            require('./Views/afficherSimulateurFrais.php');
+            require(ROOT_PATH . 'Views/afficherSimulateurFrais.php');
             readline("Appuyer sur entrer pour continuer ...");
             break;
         }
